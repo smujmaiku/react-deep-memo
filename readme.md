@@ -14,13 +14,14 @@ Use a messy object-like value as a memo with `useDeepMemo`
 
 ### useDeepMemo
 
-Like `useMemo` but it will restore state on reload and share between tabs.
+Creates a memo of a value that is checked with `deep-equal`.
 
 ```js
-const obj = useDeepMemo({ key: 'value' });
+const value = useDeepMemo({ key: 'value' });
+
 useEffect(() => {
 	console.log('I am called once!');
-}, [obj]);
+}, [value]);
 ```
 
 ## License
