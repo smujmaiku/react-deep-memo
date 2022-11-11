@@ -1,0 +1,4 @@
+{
+	"main": "./deepMemo.js",
+	"types": "./deepMemo.d.ts"
+}
