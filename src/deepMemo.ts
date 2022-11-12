@@ -4,23 +4,21 @@
  * MIT Licensed
  */
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import deepEqual from 'deep-equal';
 
 /**
  * Use a messy object like value as a memo
  */
 export default function useDeepMemo<T>(value: T): T {
-	const [state, setState] = useState(value);
+	const ref = useRef(value);
 
-	const current = useMemo(
-		() => (deepEqual(value, state) ? state : value),
-		[value, state]
+	const result = useMemo(
+		() => (deepEqual(value, ref.current) ? ref.current : value),
+		[value]
 	);
 
-	useEffect(() => {
-		setState(current);
-	}, [current]);
+	ref.current = result;
 
-	return current;
+	return result;
 }
